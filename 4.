@@ -1,0 +1,28 @@
+#4. Принцип Разделения Интерфейса
+from abc import ABC, abstractmethod
+
+class InputDevice(ABC):
+    @abstractmethod
+    def read_input(self):
+        pass
+
+class OutputDevice(ABC):
+    @abstractmethod
+    def write_output(self, data):
+        pass
+
+class Keyboard(InputDevice):
+    def read_input(self):
+        # Логика чтения ввода с клавиатуры
+        pass
+
+class Monitor(OutputDevice):
+    def write_output(self, data):
+        # Логика вывода данных на монитор
+        pass
+class Printer(OutputDevice):
+    def write_output(self, data):
+        # Логика вывода данных на принтер
+        pass
+# Этот принцип требует, чтобы клиенты не зависели от интерфейсов, которые они не используют.
+
