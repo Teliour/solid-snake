@@ -1,0 +1,31 @@
+# 3. Принцип Подстановки Лисков
+from abc import ABC, abstractmethod
+
+class Bird(ABC):
+    @abstractmethod
+    def fly(self):
+        pass
+
+class Duck(Bird):
+    def fly(self):
+        print("Утка летит")
+
+class Penguin(Bird):
+    def fly(self):
+        raise NotImplementedError("Пингвины не могут летать")
+
+class NonFlyingBird(Bird):
+    def fly(self):
+        raise NotImplementedError("Эта птица не может летать")
+
+class Penguin(NonFlyingBird):
+    pass
+
+def make_bird_fly(bird: Bird):
+    try:
+        bird.fly()
+    except NotImplementedError:
+        print("Эта птица не может летать")
+
+# Этот принцип гласит, что объекты в программе должны быть заменяемыми на объекты их подклассов.
+
