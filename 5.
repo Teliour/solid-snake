@@ -1,0 +1,29 @@
+#5. Принцип Инверсии Зависимостей
+from abc import ABC, abstractmethod
+
+class Notification(ABC):
+    @abstractmethod
+    def send_notification(self, message):
+        pass
+
+class EmailSender(Notification):
+    def send_notification(self, message):
+        # Логика отправки уведомления по электронной почте
+        pass
+
+class SMSNotification(Notification):
+    def send_notification(self, message):
+        # Логика отправки уведомления по SMS
+        pass
+
+class User:
+    def __init__(self, notification_service: Notification):
+        self.notification_service = notification_service
+
+    def send_notification(self, message):
+        self.notification_service.send_notification(message)
+
+user = User(EmailSender())
+user.send_notification("Привет!")
+
+# Этот принцип гласит, что классы должны зависеть от абстракций, а не от конкретных реализаций.
